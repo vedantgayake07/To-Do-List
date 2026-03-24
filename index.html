@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <link rel="Stylesheet" href="todo.css">
+</head>
+<body>
+    <h1>To-Do-List</h1>
+
+    <div id="adddata">
+        <input type="text" id="task-input" placeholder="Enter the task">
+        <button id="add" onclick="add()">Add Task</button>
+    </div>
+
+    <div id="listofTasks">
+        <ul id="todo-list"></ul>
+    </div>
+    <p id="info">
+        You can double click on the task to edit it!!
+    </p>
+        <button id="clear" onclick="del()">Clear</button>
+    <script src="todo.js"></script>
+</body>
+</html>
