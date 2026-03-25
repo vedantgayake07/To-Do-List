@@ -9,10 +9,10 @@ const dat = new Date();
 function add()
 {
     let todo = taskinpt.value ;
-    let day = `${dat.getFullYear()} : ${dat.getMonth()} : ${dat.getDay()}`
+    let day = `${dat.getFullYear()} : ${dat.getMonth()+1} : ${dat.getDay()}`
     if(todo==="")
     {
-        window.alert("enter the task");
+        window.alert("enter the task"); 
         return;
     }
     let complete = false;
@@ -46,6 +46,10 @@ function showtasks()
     li.addEventListener("dblclick" , function()
     {
         let update = window.prompt("Enter the name of the task");
+        if(update == "")
+        {
+            return;
+        }
         element.task = update;
 
         localStorage.setItem("tasks", JSON.stringify(arr));
