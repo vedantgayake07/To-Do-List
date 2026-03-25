@@ -3,23 +3,30 @@ const addbtn = document.getElementById("add");
 const list = document.getElementById("todo-list");
 let tasks =[];
 let arr=[];
-const dat = new Date();
 
 
 function add()
 {
-    let todo = taskinpt.value ;
-    let day = `${dat.getFullYear()} : ${dat.getMonth()+1} : ${dat.getDay()}`
+    const dat = new Date();
+    let todo = taskinpt.value;
+    if(check(todo))
+    {
+        alert("task already exist , enter new task");
+        return;
+    }
+    let day = `${dat.getFullYear()} : ${dat.getMonth()+1} : ${dat.getDate()}`
     if(todo==="")
     {
         window.alert("enter the task"); 
         return;
     }
     let complete = false;
-    let tasks = JSON.parse(localStorage.getItem("tasks"))  || [];
+    tasks = JSON.parse(localStorage.getItem("tasks"))  || [];
     tasks.push({task : todo , completed : complete , date : day});
 
     localStorage.setItem("tasks" , JSON.stringify(tasks));
+
+
     showtasks();
 }
 
@@ -46,7 +53,7 @@ function showtasks()
     li.addEventListener("dblclick" , function()
     {
         let update = window.prompt("Enter the name of the task");
-        if(update == "")
+        if(update == "" || update== null)
         {
             return;
         }
@@ -66,6 +73,22 @@ function showtasks()
     });
 }
 
+function check(todo1)
+{
+    let arr = JSON.parse(localStorage.getItem("tasks"));
+    if(arr == null)
+    {
+        return false;
+    }
+    let exists = false;
+    arr.forEach(element => {
+        if(element.task == todo1)
+        {
+            exists = true;
+        }
+    })
+    return exists;
+}
 function del()
 {
     let choice = window.confirm("do yo want to delete you tasks");
